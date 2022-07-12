@@ -1,0 +1,31 @@
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <meta charset="UTF-8">
+        <meta http-equiv="X-UA-Compatible" content="IE=edge">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <link rel="stylesheet" href="/static/index.css">
+        <link rel="shortcut icon" href="/static/NetScript Network Profile Round Logo.png" type="image/x-icon">
+        <title>NSN Bible Verses</title>
+    </head>
+    <body>
+        <div class="main">
+            <div class="userDiv">
+                <div class="userImgDiv">
+                    <img class="userImg" width="50px" height="50px" src="/static/NetScript Network Profile Round Logo.png" alt="User">
+                </div>
+                <div class="Hspacer"></div>
+                <div class="userName">
+                    <h1>Bible Verses</h1>
+                </div>
+            </div>
+            <div class="Vspacer"></div>
+            <form action="{{url_for('Home')}}" id="pass" method="post">
+                <div class="passwordField">
+                    <input type="password" id="passw" name="pass" placeholder="Password">
+                    <button class="arrowBtn" type="submit">🡢</button>
+                </div>
+            </form>
+        </div>
+    </body>
+</html>
