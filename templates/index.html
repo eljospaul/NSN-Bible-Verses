@@ -7,8 +7,30 @@
         <link rel="stylesheet" href="/static/index.css">
         <link rel="shortcut icon" href="/static/NetScript Network Profile Round Logo.png" type="image/x-icon">
         <title>NSN Bible Verses</title>
+        <script>
+            function snack() {
+                var x = document.getElementById("snackbar");
+                var xText = document.getElementById("snackText");
+                if ("{{indexPassword}}" === "{{uncryptPassword}}") {
+                    x.className = "show";
+                    xText.innerHTML = "Successfully Logged In";
+                    setTimeout(function(){ x.className = x.className.replace("show", ""); }, 2000);
+                    setTimeout(() => {
+                        window.location.href = "/create";
+                    }, 2500);
+                } else if ("{{indexPassword}}" !== "{{uncryptPassword}}") {
+                    xText.innerHTML = "Successfully Logged In";
+                    x.className = "show";
+                    setTimeout(function(){ x.className = x.className.replace("show", ""); }, 2000);
+                    setTimeout(() => {
+                        window.location.href = "/";
+                    }, 2500);
+                }
+            }
+        </script>
     </head>
     <body>
+        <div id="snackbar"><p id="snackText"></p></div>
         <div class="main">
             <div class="userDiv">
                 <div class="userImgDiv">
@@ -22,7 +44,7 @@
             <div class="Vspacer"></div>
             <form action="{{url_for('Home')}}" id="pass" method="post">
                 <div class="passwordField">
-                    <input type="password" id="passw" name="pass" placeholder="Password">
+                    <input type="password" autocomplete="current-password" id="passw" name="pass" placeholder="Password">
                     <button class="arrowBtn" type="submit">🡢</button>
                 </div>
             </form>

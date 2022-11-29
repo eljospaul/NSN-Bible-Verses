@@ -29,6 +29,18 @@
                     <input type="password" required  id="reference" name="password" placeholder="Password">
                     <button class="arrowBtn" type="submit">🡢</button>
                 </div>
+                <div class="Vspacer"></div>
+                <div class="bibleVerseField">
+                    <textarea id="caption" name="caption" placeholder="Caption">
+🔻 Let People Know about Jesus ✝
+Share Now to your Friends & Family 🙏🏻
+
+👉🏻 Discover daily bible quotes and verses here
+
+#bibleversesin
+#Devotional #dailydevotional #christian #christianwoman #christianwomen #christianwife #christianwedding #biblejournaling #bibleverse #bible #dailyverse #worship #church #dailybibleverse #biblequote #biblequotes #testimonials #testimony #testimonial #newtestament #oldtestament #christianapparel #christianathlete #godlovesyou #godlovesme #christians #christianchurch #christianchurches #dailybibleverse
+                    </textarea>
+                </div>
             </form>
         </div>
         <div class="sidebar" id="sidebar">
@@ -38,10 +50,15 @@
                         <img style="border-radius: 5px; max-width: 100%; max-height: 100%;" src="/static/Exports/{{today}}.jpg" alt="">
                     </div>
                     <div class="bibleVerseFieldSB" id="postBtn">
-                        <h5 class="postBtn">-----</h5>
+                        <h5 class="postBtn">{{notificationViewVar}}</h5>
                     </div>
                 </form>
             </div>
         </div>
+        <script>
+            if ("{{alertUser}}" == true) {
+                alert("Please wait while we're uploading...")
+            }
+        </script>
     </body>
 </html>
