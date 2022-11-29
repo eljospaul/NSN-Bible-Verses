@@ -9,7 +9,7 @@
     "routes": [
         {
             "src": "(.*)",
-            "dest": "Flask.py"
+            "dest": "app.py"
         }
     ]
   }
