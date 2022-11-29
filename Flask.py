@@ -1,4 +1,3 @@
-from fileinput import filename
 import os
 from instabot import Bot
 from flask import Flask, flash, render_template, request, redirect, url_for
