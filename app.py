@@ -8,12 +8,16 @@ from PIL import Image, ImageFont, ImageDraw
 app = Flask(__name__)
 app.secret_key = "nsnbveljos"
 
+flag = False
+
 rmLi = ["Breeze.jpg", "Cloud.jpg", "Rainy Day.jpg", "Sandstorm.jpg", "Soft Pink.jpg"]
 rImg = os.path.abspath("static/BGs/") + random.choice(rmLi)
 rImg = rImg.replace("\\", "/").replace("/BGs", "/BGs/")
 uncryptPassword = "bibleverses.community.eljos@8224"
 today = datetime.now().strftime("%d%m%y")
 timeNow = datetime.now().strftime("%I:%M:%S %p")
+timeNow = timeNow.replace(":", "")
+timeNow = timeNow.replace(" PM", "")
 fileNameImg = os.path.abspath("static/Exports/") + today + ".jpg"
 fileNameImg = fileNameImg.replace("\\", "/").replace("/Exports", "/Exports/")
 alertUser = False
@@ -31,12 +35,12 @@ def Home():
     indexPassword = ""
     if request.method == "POST":
         indexPassword = request.form.get("pass")
-        # if indexPassword == uncryptPassword:
-        #     auth = True
-        #     return redirect("/create")
-        # else:
-        #     flash("Incorrect Password")
-        #     auth = False
+        if indexPassword == uncryptPassword:
+            auth = True
+            return redirect("/create")
+        else:
+            flash("Incorrect Password")
+            auth = False
     return render_template("/index.html", indexPassword=indexPassword, uncryptPassword=uncryptPassword)
 
 @app.route('/create', methods =["GET", "POST"])
@@ -77,7 +81,8 @@ def Create():
 @app.route('/post', methods =["GET", "POST"])
 def PostImg():
     notificationView = "-----"
-    if request.method == "POST":
+    flag = True
+    if request.method == "POST" and flag:
         username = request.form.get("username")
         password = request.form.get("password")
         caption = request.form.get("caption")
@@ -104,12 +109,12 @@ def PostImg():
         global instaPostID
         instaPostID = up["code"]
         if instaPostID:
+            os.rename(oldFileNameImg, newFileNameImg)
             return redirect("/uploaded")
         if up:
             notificationView = "Posted Successfully"
         else:
             notificationView = "Posting..."
-        os.rename(oldFileNameImg, newFileNameImg)
     return render_template("/post.html", today=today, notificationView=notificationView)
 
 @app.route('/uploaded', methods =["GET", "POST"])
